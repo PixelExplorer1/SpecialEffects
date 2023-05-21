@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        height: 100vh;
+        background-color: black;
+        display: flex;
+
+    }
+
+    h1{
+        margin: auto;
+        font-size: 70px;
+        color: #fff;
+        position: relative;
+    }
+
+    h1::before{
+        content: "Zang Guangpeng's Inner Volume King";
+        color: #06ee99;
+        position: absolute;
+        width: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 5px solid #06ee99;
+        animation: animate 8s linear infinite;
+        filter: drop-shadow(0 0 10px rgb(0, 255, 0));
+    }
+
+    @keyframes animate{
+        0%{
+            width: 0;
+        }
+        100%{
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <h1>Zang Guangpeng's Inner Volume King</h1>
+</body>
+</html>
