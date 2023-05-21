@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标移动特效</title>
+</head>
+<style>
+    html,body{
+        padding: 0;
+        margin: 0;
+        background-color: black;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    span{
+        color: #fff;
+        position: absolute;
+        /* 定义绝对定位；禁用span的鼠标事件 */
+        pointer-events: none;
+        animation: fade-out 1s linear infinite;
+    }
+
+    span::before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: url(./img/小红心.png);
+        background-repeat: no-repeat;
+        animation: path 1s linear infinite;
+    }
+
+    /* 定义水平移动100px和旋转360deg动画 */
+    @keyframes path{
+        0%{
+            transform: translate(0) rotate(0deg);   
+        }
+        100%{
+            transform: translate(100px) rotate(360deg);
+        }
+    }
+
+    /* 定义淡入淡出效果 */
+    @keyframes fade-out{
+        0%,100%{
+            opacity: 0;
+        }
+        20%,80%{
+            opacity: 1;
+        }
+    }
+    
+</style>
+<body>
+    <script>
+        //定义鼠标移动事件
+        document.addEventListener('mousemove',function(e){
+            //获取body标签
+            let body = document.querySelector('body')
+            //创建span标签
+            let span = document.createElement('span')
+            //获取鼠标移动的x，y坐标
+            let x = e.offsetX
+            let y = e.offsetY
+            //实时更新span标签的位置
+            span.style.left = x + 'px'
+            span.style.top = y + 'px'
+            //设置随机的初始旋转角度
+            span.style.transform = `rotate(${Math.random() * 360}deg)`
+            //定义爱心的随机大小
+            let size = Math.random() * 32
+            span.style.width = `${size + 30}px`
+            span.style.height = `${size + 30}px`
+            //添加到body元素中
+            body.appendChild(span)
+            //定义每颗爱心存活1秒钟
+            setTimeout(function(){
+                body.removeChild(span)
+            },1000)
+        })
+    </script>
+</body>
+</html>
